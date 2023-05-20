@@ -14,7 +14,7 @@ const HomePage = () => {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Center fontFamily="work-sans" color='black' >Talk a Tive</Center>
+        <Center fontFamily="work-sans"  color='black' >Talk a Tive</Center>
       </Box>
       <Box></Box>
     </Container>
