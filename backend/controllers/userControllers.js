@@ -39,6 +39,9 @@ const registerUser=asyncHandler(async(req,res)=>{
 
 });
 
+//@description     Auth the user
+//@route           POST /api/users/login
+//@access          Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -49,7 +52,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      // isAdmin: user.isAdmin,
+      isAdmin: user.isAdmin,
       pic: user.pic,
       token: generateToken(user._id),
     });
@@ -61,7 +64,15 @@ const authUser = asyncHandler(async (req, res) => {
 
 
 const allUsers=asyncHandler(async(req,res)=>{
-  const keyword=req.query.search
+  const keyword=req.query.search?{
+    $or:[
+      { name: { $regex: req.query.search, $options: "i" } },
+      { email: { $regex: req.query.search, $options: "i" } },
+    ]
+  }
+  :{};
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  res.send(users);
 
   console.log(keyword);
 });

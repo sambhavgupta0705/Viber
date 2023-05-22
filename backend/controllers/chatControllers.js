@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 //@route           POST /api/chat/
 //@access          Protected
 const accessChat = asyncHandler(async (req, res) => {
-  const { userId } = req.body;
+  const  userId  = "646a047728a5cb84c059bc39";
 
   if (!userId) {
     console.log("UserId param not sent with request");
