@@ -101,8 +101,8 @@ const Signup = () => {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("cloud_name", "dyegkspby");
+      fetch("https://api.cloudinary.com/v1_1/dyegkspby/image/upload", {
         method: "post",
         body: data,
       })
@@ -152,7 +152,7 @@ const Signup = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder="Enter Password"
-            onChange={(e) =>  word(e.target.value)}
+            onChange={(e) =>  setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
