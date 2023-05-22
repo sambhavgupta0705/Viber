@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 //@route           POST /api/chat/
 //@access          Protected
 const accessChat = asyncHandler(async (req, res) => {
-  const  userId  = "646a047728a5cb84c059bc39";
+  const  {userId}  = req.body
 
   if (!userId) {
     console.log("UserId param not sent with request");
@@ -75,12 +75,13 @@ const fetchChats = asyncHandler(async (req, res) => {
 //@route           POST /api/chat/group
 //@access          Protected
 const createGroupChat = asyncHandler(async (req, res) => {
-  if (!req.body.users || !req.body.name) {
-    return res.status(400).send({ message: "Please Fill all the feilds" });
-  }
+//   if (!req.body.users || !req.body.name) {
+//     return res.status(400).send({ message: "Please Fill all the fields" });
+//   }
 
-  var users = JSON.parse(req.body.users);
-
+//   var users = JSON.parse(req.body.users);
+  users=["6469ff572ccef270b829903f","646a047728a5cb84c059bc39"]
+  
   if (users.length < 2) {
     return res
       .status(400)
@@ -139,7 +140,8 @@ const renameGroup = asyncHandler(async (req, res) => {
 // @access  Protected
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
-
+    // const userId="646a047728a5cb84c059bc39"
+    // const chatId="646b65455fc4893e43b8a918"
   // check if the requester is admin
 
   const removed = await Chat.findByIdAndUpdate(
@@ -167,7 +169,8 @@ const removeFromGroup = asyncHandler(async (req, res) => {
 // @access  Protected
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
-
+//  const chatId="646b65455fc4893e43b8a918"
+//  const userId="646b64a49d65ffd2fc559926"
   // check if the requester is admin
 
   const added = await Chat.findByIdAndUpdate(
