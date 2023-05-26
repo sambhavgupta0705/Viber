@@ -31,7 +31,7 @@ import ProfileModal from "./ProfileModal";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import { ChatState } from "../../context/ChatProvider";
-// import { getSender } from "../../config/ChatLogics";
+import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 
 

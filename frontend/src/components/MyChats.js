@@ -16,7 +16,6 @@ const MyChats = ({ fetchAgain }) => {
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   const toast = useToast();
-// ChatState
   const fetchChats = async () => {
     // console.log(user._id);
     try {
@@ -48,7 +47,7 @@ const MyChats = ({ fetchAgain }) => {
 
   return (
     <Box
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      d={{ base: selectedChat ? "none" : "flex", lg: "flex" }}
       flexDir="column"
       alignItems="center"
       p={3}

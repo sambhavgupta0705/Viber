@@ -15,8 +15,7 @@ import {
   } from "@chakra-ui/react";
   import axios from "axios";
   import { useState } from "react";
-//   import { ChatState } from "../../Context/ChatProvider";
-//   import UserBadgeItem from "../userAvatar/UserBadgeItem";
+  import UserBadgeItem from "../userAvatar/UserBadgeItem";
   import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../context/ChatProvider";
   
@@ -159,17 +158,15 @@ import { ChatState } from "../../context/ChatProvider";
                 />
               </FormControl>
               <Box w="100%" d="flex" flexWrap="wrap">
-                {/* {selectedUsers.map((u) => (
+                {selectedUsers.map((u) => (
                   <UserBadgeItem
                     key={u._id}
                     user={u}
                     handleFunction={() => handleDelete(u)}
                   />
-                ))} */}
+                ))}
               </Box>
-              {loading ? (
-                // <ChatLoading />
-                <div>Loading...</div>
+              {loading ? (                <div>Loading...</div>
               ) : (
                 searchResult
                   ?.slice(0, 4)
