@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
+import {Flex} from '@chakra-ui/react'
+
 import {
   Menu,
   MenuButton,
@@ -23,14 +25,14 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
-// import ChatLoading from "../ChatLoading";
+import ChatLoading from "../ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
-// import ProfileModal from "./ProfileModal";
+import ProfileModal from "./ProfileModal";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import { ChatState } from "../../context/ChatProvider";
 // import { getSender } from "../../config/ChatLogics";
-// import UserListItem from "../userAvatar/UserListItem";
+import UserListItem from "../userAvatar/UserListItem";
 
 
 function SideDrawer() {
@@ -126,7 +128,7 @@ function SideDrawer() {
 
   return (
     <>
-      <Box
+      <Flex
         d="flex"
         justifyContent="space-between"
         alignItems="center"
@@ -143,8 +145,8 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+        <Text fontSize="2xl" fontWeights="700" fontFamily="Work sans">
+          Viber
         </Text>
         <div>
           <Menu>
@@ -182,15 +184,15 @@ function SideDrawer() {
               />
             </MenuButton>
             <MenuList>
-              {/* <ProfileModal user={user}> */}
+              <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>{" "}
-              {/* </ProfileModal> */}
+              </ProfileModal>
               <MenuDivider />
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
-      </Box>
+      </Flex>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -206,7 +208,7 @@ function SideDrawer() {
               />
               <Button onClick={handleSearch}>Go</Button>
             </Box>
-            {/* {loading ? (
+            {loading ? (
               <ChatLoading />
             ) : (
               searchResult?.map((user) => (
@@ -216,7 +218,8 @@ function SideDrawer() {
                   handleFunction={() => accessChat(user._id)}
                 />
               ))
-            )} */}
+              
+            )}
             {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
         </DrawerContent>
