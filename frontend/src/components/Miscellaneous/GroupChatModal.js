@@ -59,7 +59,7 @@ import { ChatState } from "../../context/ChatProvider";
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.get(`/api/user?search=${search}`, config);
+        const { data } = await axios.get(`/https://viber.onrender.com/api/user?search=${search}`, config);
         // console.log(data);
         setLoading(false);
         setSearchResult(data);
@@ -98,7 +98,7 @@ import { ChatState } from "../../context/ChatProvider";
           },
         };
         const { data } = await axios.post(
-          `/api/chat/group`,
+          `/https://viber.onrender.com/api/chat/group`,
           {
             name: groupChatName,
             users: JSON.stringify(selectedUsers.map((u) => u._id)),
