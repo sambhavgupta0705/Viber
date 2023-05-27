@@ -7,8 +7,9 @@ import {
   Center,
   TabPanels,
   Tabs,
-  Text,
+
 } from "@chakra-ui/react";
+ // eslint-disable-next-line
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import Login from "../components/Authentication/Login";
