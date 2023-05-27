@@ -52,7 +52,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `https://viber.onrender.com/api/message/${selectedChat._id}`,
+        `api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -83,7 +83,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          "https://viber.onrender.com/api/message",
+          "/api/message",
           {
             content: newMessage,
             chatId: selectedChat,

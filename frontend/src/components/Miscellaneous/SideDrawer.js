@@ -48,11 +48,11 @@ function SideDrawer() {
   } = ChatState();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const history = useHistory();
+  let history = useHistory();
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
-    history.push("/");
+    // history.push("/");
   };
 
   const handleSearch = async () => {
@@ -76,7 +76,7 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`/https://viber.onrender.com/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -103,7 +103,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/https://viber.onrender.com/api/chat`, { userId }, config);
+      const { data } = await axios.post(`/api/chat`, { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);

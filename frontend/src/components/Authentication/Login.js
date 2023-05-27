@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
-  const history = useHistory();
+  let history = useHistory();
 
   const submitHandler = async () => {
     setLoading(true);
@@ -40,7 +40,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/https://viber.onrender.com/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );
