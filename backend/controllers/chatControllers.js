@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 //@route           POST /api/chat/
 //@access          Protected
 const accessChat = asyncHandler(async (req, res) => {
-  const  {userId}  = req.body
+  const { userId } = req.body;
 
   if (!userId) {
     console.log("UserId param not sent with request");
@@ -51,6 +51,9 @@ const accessChat = asyncHandler(async (req, res) => {
   }
 });
 
+//@description     Fetch all chats for a user
+//@route           GET /api/chat/
+//@access          Protected
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
@@ -75,21 +78,23 @@ const fetchChats = asyncHandler(async (req, res) => {
 //@route           POST /api/chat/group
 //@access          Protected
 const createGroupChat = asyncHandler(async (req, res) => {
-//   if (!req.body.users || !req.body.name) {
-//     return res.status(400).send({ message: "Please Fill all the fields" });
-//   }
+  if (!req.body.users || !req.body.name) {
+    return res.status(400).send({ message: "Please Fill all the feilds" });
+  }
 
-//   var users = JSON.parse(req.body.users);
-  users=["6469ff572ccef270b829903f","646a047728a5cb84c059bc39"]
-  
+  var users = JSON.parse(req.body.users);
+
   if (users.length < 2) {
     return res
       .status(400)
       .send("More than 2 users are required to form a group chat");
   }
 
-  users.push(req.user);
+  users.push(req.users);
 
+  // var users = JSON.parse(req.body.users);
+  // users.append(req.user)
+  users.push(req.user);
   try {
     const groupChat = await Chat.create({
       chatName: req.body.name,
@@ -97,6 +102,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
       isGroupChat: true,
       groupAdmin: req.user,
     });
+    console.log(users);
 
     const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
       .populate("users", "-password")
@@ -140,8 +146,7 @@ const renameGroup = asyncHandler(async (req, res) => {
 // @access  Protected
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
-    // const userId="646a047728a5cb84c059bc39"
-    // const chatId="646b65455fc4893e43b8a918"
+
   // check if the requester is admin
 
   const removed = await Chat.findByIdAndUpdate(
@@ -169,8 +174,7 @@ const removeFromGroup = asyncHandler(async (req, res) => {
 // @access  Protected
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
-//  const chatId="646b65455fc4893e43b8a918"
-//  const userId="646b64a49d65ffd2fc559926"
+
   // check if the requester is admin
 
   const added = await Chat.findByIdAndUpdate(

@@ -2,8 +2,6 @@ import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
-import {Flex} from '@chakra-ui/react'
-
 import {
   Menu,
   MenuButton,
@@ -30,10 +28,9 @@ import { Spinner } from "@chakra-ui/spinner";
 import ProfileModal from "./ProfileModal";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
-import { ChatState } from "../../context/ChatProvider";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
-
+import { ChatState } from "../../context/ChatProvider";
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -49,8 +46,6 @@ function SideDrawer() {
     chats,
     setChats,
   } = ChatState();
-  // ChatState
-
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
@@ -127,8 +122,10 @@ function SideDrawer() {
   };
 
   return (
+    
     <>
-      <Flex
+    {/* ChatStat */}
+      <Box
         d="flex"
         justifyContent="space-between"
         alignItems="center"
@@ -145,7 +142,7 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontWeights="700" fontFamily="Work sans">
+        <Text fontSize="2xl" fontFamily="Work sans">
           Viber
         </Text>
         <div>
@@ -169,7 +166,7 @@ function SideDrawer() {
                 >
                   {notif.chat.isGroupChat
                     ? `New Message in ${notif.chat.chatName}`
-                    : `New Message from`}
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
                 </MenuItem>
               ))}
             </MenuList>
@@ -192,7 +189,7 @@ function SideDrawer() {
             </MenuList>
           </Menu>
         </div>
-      </Flex>
+      </Box>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -218,7 +215,6 @@ function SideDrawer() {
                   handleFunction={() => accessChat(user._id)}
                 />
               ))
-              
             )}
             {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
