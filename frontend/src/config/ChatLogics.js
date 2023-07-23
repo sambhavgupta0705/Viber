@@ -1,6 +1,22 @@
+  export const getSender = (loggedUser, users) => {
+    console.log(loggedUser)
+    return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
+    // console.log(users[0]);
+  };
+  
+  export const getSenderFull = (loggedUser, users) => {
+    return users[0]._id === loggedUser._id ? users[1] : users[0];
+  };
+
+  export const getSendered = (loggedUser, users) => {
+    return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
+  };
+
+
 export const isSameSenderMargin = (messages, m, i, userId) => {
     // console.log(i === messages.length - 1);
-  
+
+
     if (
       i < messages.length - 1 &&
       messages[i + 1].sender._id === m.sender._id &&
@@ -38,10 +54,3 @@ export const isSameSenderMargin = (messages, m, i, userId) => {
     return i > 0 && messages[i - 1].sender._id === m.sender._id;
   };
   
-  export const getSender = (loggedUser, users) => {
-    return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
-  };
-  
-  export const getSenderFull = (loggedUser, users) => {
-    return users[0]._id === loggedUser._id ? users[1] : users[0];
-  };

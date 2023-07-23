@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
-  const history = useHistory();
+  let history = useHistory();
 
   const submitHandler = async () => {
     setLoading(true);
