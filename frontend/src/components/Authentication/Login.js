@@ -40,7 +40,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/https://viber.onrender.com/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );
@@ -55,7 +55,7 @@ const Login = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      // history.push("/chats");
     } catch (error) {
       toast({
         title: "Error Occured!",
